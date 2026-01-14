@@ -22,14 +22,6 @@ permalink: /
     <h2>Welcome!</h2>
     <p><a href="{{ '/search/' | relative_url }}">Search recipes by ingredient</a></p>
 		
-		<form id="ingredient-search" class="ingredient-search" onsubmit="return false;">
-			<label for="ingredient-search-input">Search ingredients</label>
-			<input id="ingredient-search-input" type="search" placeholder="e.g., garlic, chicken, rice" autocomplete="off" />
-			<div id="ingredient-search-results" class="ingredient-search-results">
-				<p class="accent-color-3">Enter an ingredient to search recipes.</p>
-			</div>
-		</form>
-		
 		{% include ingredient-search.html %}
 		
     <h2>All recipes</h2>
