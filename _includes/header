@@ -6,10 +6,10 @@
       </a>
     </h1>
 
-    <h1 class="site-title" align="right">
+    <h2 class="site-title" align="right">
       <a href="{{ '/search/' | relative_url }}">
         Search recipes by ingredient
       </a>
-    </h1>
+    </h2>
   </div>
 </header>
