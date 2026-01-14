@@ -9,8 +9,6 @@ total_time: "45 minutes"
 servings: "4"
 tags:
   - dishes
-  - chicken
-  - gnocchi
 source_name: "Iowa Girl Eats"
 source_url: "https://iowagirleats.com/one-pot-gnocchi-chicken-pot-pie/"
 ingredients:
