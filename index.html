@@ -1,0 +1,42 @@
+---
+layout: null
+permalink: /
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ site.title | default: "My Cookbook" }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/recipe.css' | relative_url }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title | default: "My Cookbook" }}</a></h1>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h2>Welcome</h2>
+    <p><a href="{{ '/search/' | relative_url }}">Search recipes by ingredient</a></p>
+
+    <h3>All recipes</h3>
+    <ul>
+      {% if site.recipes and site.recipes.size > 0 %}
+        {% for r in site.recipes %}
+          <li><a href="{{ r.url | relative_url }}">{{ r.title }}</a>{% if r.date %} — {{ r.date | date: "%Y-%m-%d" }}{% endif %}</li>
+        {% endfor %}
+      {% else %}
+        <li>No recipes found. Make sure your recipe files are under <code>_recipes/</code> and that <code>_config.yml</code> has <code>collections: recipes: output: true</code>.</li>
+      {% endif %}
+    </ul>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; {{ site.time | date: "%Y" }} {{ site.title | default: "My Cookbook" }}</p>
+    </div>
+  </footer>
+</body>
+</html>
