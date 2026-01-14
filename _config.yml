@@ -1,0 +1,17 @@
+title: "My Cookbook"
+baseurl: "" # set if you host at github.com/username/repo (leave empty or "/repo" as needed)
+url: "https://qmwc3.github.io/q-recipe-archive" # change to your pages url if desired
+
+collections:
+  recipes:
+    output: true
+defaults:
+  - scope:
+      path: ""
+      type: recipes
+    values:
+      layout: recipe
+
+# optional: exclude build files
+exclude:
+  - "node_modules"
