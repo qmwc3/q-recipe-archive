@@ -38,6 +38,10 @@
       {% if page.description %}
       <p class="description">{{ page.description }}</p>
       {% endif %}
+      
+      {% if page.source_url %}
+      <p class="description">Inspired by <a href="{{ page.source_url }}" target="_blank">{{ page.source_name }}</a></p>
+      {% endif %}
 
       <section class="ingredients">
         <h3>Ingredients</h3>
