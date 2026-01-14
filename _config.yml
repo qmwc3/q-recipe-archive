@@ -1,6 +1,6 @@
 title: "My Cookbook"
 url: "https://qmwc3.github.io"
-baseurl: "/q-recipe-archive"
+baseurl: "/q-cookbook"
 
 collections:
   recipes:
