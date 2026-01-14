@@ -1,15 +1,15 @@
 :root{
   --max-width: 860px;
-  --accent-color-1: #8b3e2f; /*dark red */
-  --accent-color-2: #f6e9e6; /*light pink */
-  --text-color-1: #222; /* white */
+  --accent-color-1: #5E3B4D; /* dark plum */
+  --accent-color-2: #f6e9e6; /* light purple */
+  --text-color-1: #F2F2F2; /* white */
   --muted: #666; /* light gray */
-  --bg: #36393e; /* dark gray */
+  --bg: #4B2B30; /* chocolate brown */
 }
 
 *{box-sizing:border-box}
 body{font-family:Roboto,Arial,sans-serif; background:var(--bg); color:var(--text-color-1); margin:0; line-height:1.5}
-a {color: #0066cc;text-decoration: underline;}
+a {color: #EFEAE8;text-decoration: underline;}
 .wrap{max-width:var(--max-width); margin:0 auto; padding:1rem}
 .site-header{background:var(--accent-color-2); border-bottom:4px solid var(--accent-color-1)}
 .site-title a{color:var(--accent-color-1); text-decoration:none}
