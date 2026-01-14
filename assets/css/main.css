@@ -12,19 +12,23 @@
 body{font-family:Roboto,Arial,sans-serif; background:var(--bg); color:var(--text-color-1); margin:0; line-height:1.5}
 a{color:var(--text-link-color-1);text-decoration:underline;}
 .wrap{max-width:var(--max-width); margin:0 auto; padding:1rem}
-.site-header{background:var(--accent-color-2); border-bottom:4px solid var(--accent-color-1)}
-.site-title a{color:var(--accent-color-1); text-decoration:none}
 .meta span{margin-right:1rem; color:var(--accent-color-3); font-size:.95rem}
 .photo-gallery{display:flex; gap:.75rem; flex-wrap:wrap; margin:0 0 1rem 0}
 .photo img{max-width:100%; height:auto; display:block; border-radius:6px}
 .photo{flex:1 1 200px; min-width:200px}
 .tags .tag{display:inline-block; padding:.25rem .5rem; background:var(--text-link-color-1); color:var(--bg); border-radius:4px; text-decoration:none; margin-right:.5rem; font-size:.9rem}
+
+/* header */
+.header-row {display: flex;align-items: center;gap: 1.5rem;}
+.site-header{background:var(--accent-color-2); border-bottom:4px solid var(--accent-color-1)}
+
+/* footer */
 .site-footer{padding:1rem 0; border-top:1px solid var(--accent-color-1); margin-top:2rem; color:var(--text-color-1)}
 
 /* recipe page */
-.recipe-title{margin-top:0}
-.ingredients, .preparations, .directions{background:#var(--bg); padding:0.5rem; border-radius:8px;}
 ul, ol{margin:0; padding-left:1.25rem}
+.ingredients, .preparations, .directions{background:#var(--bg); padding:0.5rem; border-radius:8px;}
+.recipe-title{margin-top:0}
 
 /* ingredients search */
 .ingredient-search { margin: 0 0 1rem 0; }
