@@ -19,10 +19,7 @@ permalink: /search/
     {% include ingredient-search.html %}
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <p>&copy; {{ site.time | date: "%Y" }} {{ site.title | default: "My Cookbook" }}</p>
-    </div>
-  </footer>
+  {% include footer %}
+  
 </body>
 </html>
