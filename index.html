@@ -25,7 +25,7 @@ permalink: /
     <ul>
       {% if site.recipes and site.recipes.size > 0 %}
         {% for r in site.recipes %}
-          <li><a href="{{ r.url | relative_url }}">{{ r.title }}</a>{% if r.date %} — {{ r.date | date: "%Y-%m-%d" }}{% endif %}</li>
+          <li><a href="{{ r.url | relative_url }}">{{ r.title }}</a></li>
         {% endfor %}
       {% else %}
         <li>No recipes found. Make sure your recipe files are under <code>_recipes/</code> and that <code>_config.yml</code> has <code>collections: recipes: output: true</code>.</li>
