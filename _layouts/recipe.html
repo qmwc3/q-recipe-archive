@@ -65,6 +65,10 @@
           {% endfor %}
         </ol>
       </section>
+      
+      {% if page.pairing %}
+      <p class="description">{{ page.pairing }}</p>
+      {% endif %}
 
       {% if page.tags %}
       <section class="tags">
