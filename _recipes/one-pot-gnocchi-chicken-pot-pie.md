@@ -40,5 +40,6 @@ directions:
   - "Bring the mixture to a bubble, stirring occasionally, then add the gnocchi."
   - "Reduce heat to medium and simmer, stirring frequently, until the gnocchi are tender (5 minutes)."
   - "Stir in the chicken and peas."
+pairing: ""
 photos: []
 ---
