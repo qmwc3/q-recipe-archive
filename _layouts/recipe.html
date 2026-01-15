@@ -43,31 +43,27 @@
 
       <section class="ingredients">
       <h3>Ingredients</h3>
-    
-      <ul class="ingredients-list">
-        {% assign optional = nil %}
-    
-        {% for ingredient in page.ingredients %}
-          {% if ingredient.label %}
-            {% assign optional = ingredient %}
-          {% else %}
-            <li>{{ ingredient }}</li>
+        <ul class="ingredients-list">
+          {% assign optional = nil %}
+          {% for ingredient in page.ingredients %}
+            {% if ingredient.label %}
+              {% assign optional = ingredient %}
+            {% else %}
+              <li>{{ ingredient }}</li>
+            {% endif %}
+          {% endfor %}
+          {% if optional %}
+            <li class="ingredient-header">{{ optional.label }}</li>
+            <li class="ingredient-nested">
+              <ul>
+                {% for item in optional.items %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            </li>
           {% endif %}
-        {% endfor %}
-    
-        {% if optional %}
-          <li class="ingredient-header">{{ optional.label }}</li>
-          <li class="ingredient-nested">
-            <ul class="ingredient-sublist">
-              {% for item in optional.items %}
-                <li>{{ item }}</li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% endif %}
-      </ul>
-    </section>
-
+        </ul>
+      </section>
       
       <section class="preparations">
         <h3>Preparations</h3>
