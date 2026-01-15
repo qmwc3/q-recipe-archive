@@ -5,6 +5,7 @@ date: 2026-01-14
 description: "A creamy one‑pot gnocchi and chicken dish with vegetables."
 prep_time: "10 minutes"
 cook_time: "35 minutes"
+rest_time: ""
 total_time: "45 minutes"
 servings: "4"
 tags:
