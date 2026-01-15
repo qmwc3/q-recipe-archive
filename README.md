@@ -11,15 +11,15 @@ cook_time: ""
 total_time: ""
 servings: ""
 tags: 
-	- 
+  -  
 source_name: ""
 source_url: ""
 ingredients:
-	- 
+  -  
 preparations:
-	- 
+  -  
 directions:
-	- 
+  -  
 pairing: ""
 photos: []
 ---
