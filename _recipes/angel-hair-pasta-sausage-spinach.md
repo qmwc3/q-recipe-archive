@@ -5,6 +5,7 @@ date: 2026-01-14
 description: ""
 prep_time: "10 minutes"
 cook_time: "20 minutes"
+rest_time: ""
 total_time: "30 minutes"
 servings: "6 servings"
 tags: 
