@@ -9,7 +9,7 @@ total_time: "35 minutes"
 servings: "3"
 tags: 
 	- "dishes"
-  - "1 pot/skillet"
+	- "1 pot/skillet"
 source_name: ""
 source_url: ""
 ingredients:
