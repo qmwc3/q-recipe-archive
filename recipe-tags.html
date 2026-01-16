@@ -1,14 +1,25 @@
----
-layout: page
-title: "Browse Recipes by Tag"
----
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <script src="{{ '/assets/js/recipe-tags.js' | relative_url }}"></script>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+<body>
+  
+  {% include header %}
 
-<section class="recipe-tags">
-  <h2>Filter by Tag</h2>
+  <section class="recipe-tags">
+    <h2>Filter by Tag</h2>
+  
+    <div id="tag-buttons" class="tag-buttons"></div>
+  
+    <ul id="tag-results" class="recipe-list"></ul>
+  </section>
 
-  <div id="tag-buttons" class="tag-buttons"></div>
-
-  <ul id="tag-results" class="recipe-list"></ul>
-</section>
-
-<script src="{{ '/assets/js/recipe-tags.js' | relative_url }}"></script>
+  {% include footer %}
+  
+</body>
+</html>
