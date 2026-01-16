@@ -1,10 +1,12 @@
+---
+# Processed by Jekyll
+---
 document.addEventListener('DOMContentLoaded', function () {
   const tagButtons = document.getElementById('tag-buttons');
   const results = document.getElementById('tag-results');
   let recipes = [];
 
   const indexUrl = '{{ "/recipes.json" | relative_url }}';
-  const baseUrl = '{{ "/recipe-tags/" | relative_url }}';
 
   fetch(indexUrl)
     .then(r => {
@@ -14,34 +16,31 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(data => {
       recipes = data;
       renderTags();
-
-      // Read tag from query string ?tag=<tag>
-      const params = new URLSearchParams(window.location.search);
-      const tag = params.get('tag');
-      if(tag) filterByTag(tag);
     })
-    .catch(err => console.error('Failed to load recipes.json', err));
+    .catch(err => {
+      console.error('Failed to load recipes.json', err);
+    });
 
   function renderTags() {
     const tagSet = new Set();
-    recipes.forEach(r => (r.tags || []).forEach(tag => tagSet.add(tag)));
+
+    recipes.forEach(r => {
+      (r.tags || []).forEach(tag => tagSet.add(tag));
+    });
 
     [...tagSet].sort().forEach(tag => {
       const btn = document.createElement('button');
       btn.className = 'tag';
       btn.textContent = tag;
       btn.type = 'button';
-      btn.onclick = () => {
-        // update query string in URL without reload
-        history.pushState({}, '', baseUrl + '?tag=' + encodeURIComponent(tag));
-        filterByTag(tag);
-      };
+      btn.onclick = () => filterByTag(tag);
       tagButtons.appendChild(btn);
     });
   }
 
   function filterByTag(tag) {
     results.innerHTML = '';
+
     recipes
       .filter(r => (r.tags || []).includes(tag))
       .forEach(r => {
