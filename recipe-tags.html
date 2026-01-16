@@ -10,6 +10,7 @@ permalink: /recipe-tags/
   <title>{{ page.title }} - {{ site.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
+  
 <body>
   
   {% include header %}
@@ -24,7 +25,9 @@ permalink: /recipe-tags/
 
   {% include footer %}
 
-  <script src="{{ '/assets/js/recipe-tags.js' | relative_url }}"></script>
+  <script type="text/javascript">
+  {% include recipe-tags.js %}
+  </script>
   
 </body>
 </html>
