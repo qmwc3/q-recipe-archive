@@ -22,12 +22,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function normalize(s) { return (s || '').toLowerCase(); }
 
-  function matches(recipe, query) {
+  function matches(recipe, tokens) {
     if (!recipe.ingredients) return false;
     const ingText = recipe.ingredients.join(' ').toLowerCase();
-    return ingText.includes(query);
+    return tokens.every(t => ingText.indexOf(t) !== -1);
   }
-
 
   function escapeHtml(str) {
     return String(str).replace(/[&<>"']/g, function (m) {
@@ -35,12 +34,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function highlight(text, tokens) {
-    let escaped = escapeHtml(text);
-    if (!tokens.length) return escaped;
-    const re = new RegExp('(' + tokens.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')', 'gi');
-    return escaped.replace(re, '<mark>$1</mark>');
-  }
+  function highlight(text, query) {
+		let escaped = escapeHtml(text);
+		if (!query) return escaped;
+	
+		// Escape regex characters
+		const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	
+		// Highlight the full phrase only
+		const phraseRegex = new RegExp(`(${safeQuery})`, 'gi');
+		return escaped.replace(phraseRegex, '<mark>$1</mark>');
+	}
+
 
   function render(list, queryTokens) {
     if (!results) return;
@@ -59,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const li = document.createElement('li');
       li.className = 'ingredient-search-item';
       const title = `<a href="${r.url}">${escapeHtml(r.title)}</a>`;
-      const snippet = `<div class="ingredients-snippet">${highlight((r.ingredients || []).join(', '), queryTokens)}</div>`;
+      const snippet = `<div class="ingredients-snippet">${highlight((r.ingredients || []).join(', '), query)}</div>`;
       li.innerHTML = title + snippet;
       ul.appendChild(li);
     });
@@ -69,11 +74,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (input) {
     input.addEventListener('input', function (e) {
       const q = normalize(e.target.value);
-      const query = normalize(e.target.value).trim();
-      const tokens = query.split(/\s+/).filter(Boolean);
-      const matched = query
-        ? recipes.filter(r => matches(r, query))
-        : [];
+      const tokens = q.split(/\s+/).filter(Boolean);
+      const matched = tokens.length ? recipes.filter(r => matches(r, tokens)) : [];
       render(matched, tokens);
     });
   }
