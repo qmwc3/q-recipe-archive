@@ -25,8 +25,8 @@ ingredients:
   - "½ teaspoon pepper"
   - "⅔ cup milk"
 ingredients_subhead: ""
-ingredients_2:
-  - 
+ingredients_2: 
+  - ""
 preparations:
   - "Chop the onion."
   - "Slice the sausages into bite-sized rounds."
