@@ -48,6 +48,12 @@ ul, ol { margin:0; padding-left:1.25rem }
 .ingredients-snippet { color:var(--text-color-1); font-size:.95rem; margin-top:.25rem } 
 .ingredients-snippet mark { background:var(--accent-color-3); color:var(--bg); padding:.15rem; border-radius:2px } 
 
+/* tags */
+.tag-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem;  margin-bottom: 1.25rem; }
+.tag-button { border: 1px solid #ccc; background: #f8f8f8; padding: 0.4rem 0.7rem; border-radius: 999px; cursor: pointer; font-size: 0.9rem; }
+.tag-button:hover { background: #eaeaea; }
+.recipe-list { list-style: none; padding-left: 0; }
+
 @media (max-width:640px) { 
  .photo { flex-basis:100% } 
  } 
