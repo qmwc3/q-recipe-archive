@@ -1,8 +1,8 @@
 ---
 layout: recipe
 title: "Crunchy Chicken Salad"
-date: 2026-01-15
-description: ""
+description: "A flavorful, textural chicken salad with crunchy toasted ramen and sesame seeds tossed with fresh veggies and a tangy dressing."
+notes: ""
 prep_time: ""
 cook_time: "25 minutes"
 rest_time: ""
@@ -28,6 +28,9 @@ ingredients:
     items:
       - "Scrambled egg"
       - "Edamame"
+ingredients_subhead: ""
+ingredients_2:
+  - ""
 preparations:
   - "Cook and chop the chicken."
   - "Chop the green onions."
@@ -44,6 +47,6 @@ directions:
   - "Mix the sugar, vinegar, oil, and pepper in a large bowl."
   - "Add the green onions, peanuts, chicken, and enough shredded cabbage to make a good mix into to the bowl."
   - "Toss in the noodle mixture."
-pairing: ""
+pairing: "Can be enjoyed by itself or as a wrap."
 photos: []
 ---
