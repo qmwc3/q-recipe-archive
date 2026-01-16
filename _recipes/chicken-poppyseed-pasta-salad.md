@@ -21,7 +21,7 @@ ingredients:
   - "¾ cup slivered almonds"
 ingredients_2: "Dressing"
 ingredients_2:
-	- "½ teaspoon of salt"
+  - "½ teaspoon of salt"
   - "½ teaspoon of celery salt"
   - "2 teaspoons of poppy seeds"
   - "½ teaspoon of dry mustard"
