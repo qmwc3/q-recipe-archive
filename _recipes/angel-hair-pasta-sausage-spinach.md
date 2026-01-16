@@ -1,7 +1,6 @@
 ---
 layout: recipe
 title: "Angel Hair Pasta with Sausage and Spinach"
-date: 2026-01-14
 description: ""
 notes: ""
 prep_time: "10 minutes"
