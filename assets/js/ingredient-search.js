@@ -20,63 +20,83 @@ document.addEventListener('DOMContentLoaded', function () {
       if (results) results.innerHTML = '<p class="muted">Could not load recipe index.</p>';
     });
 
-  function normalize(s) { return (s || '').toLowerCase(); }
+  function normalize(s) {
+    return (s || '').toLowerCase();
+  }
 
-  function matches(recipe, tokens) {
+  // Match ONLY consecutive words (phrase match)
+  function matches(recipe, query) {
     if (!recipe.ingredients) return false;
     const ingText = recipe.ingredients.join(' ').toLowerCase();
-    return tokens.every(t => ingText.indexOf(t) !== -1);
+    return ingText.includes(query);
   }
 
   function escapeHtml(str) {
     return String(str).replace(/[&<>"']/g, function (m) {
-      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];
+      return {
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[m];
     });
   }
 
+  // Highlight ONLY the full phrase
   function highlight(text, query) {
-		let escaped = escapeHtml(text);
-		if (!query) return escaped;
-	
-		// Escape regex characters
-		const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-	
-		// Highlight the full phrase only
-		const phraseRegex = new RegExp(`(${safeQuery})`, 'gi');
-		return escaped.replace(phraseRegex, '<mark>$1</mark>');
-	}
+    let escaped = escapeHtml(text);
+    if (!query) return escaped;
 
+    const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const phraseRegex = new RegExp(`(${safeQuery})`, 'gi');
 
-  function render(list, queryTokens) {
+    return escaped.replace(phraseRegex, '<mark>$1</mark>');
+  }
+
+  function render(list, query) {
     if (!results) return;
     results.innerHTML = '';
-    if (!queryTokens.length) {
+
+    if (!query) {
       results.innerHTML = '<p class="muted">Enter an ingredient to search recipes.</p>';
       return;
     }
+
     if (list.length === 0) {
       results.innerHTML = '<p>No recipes found matching that ingredient.</p>';
       return;
     }
+
     const ul = document.createElement('ul');
     ul.className = 'ingredient-search-list';
+
     list.forEach(r => {
       const li = document.createElement('li');
       li.className = 'ingredient-search-item';
+
       const title = `<a href="${r.url}">${escapeHtml(r.title)}</a>`;
-      const snippet = `<div class="ingredients-snippet">${highlight((r.ingredients || []).join(', '), query)}</div>`;
+      const snippet = `
+        <div class="ingredients-snippet">
+          ${highlight((r.ingredients || []).join(', '), query)}
+        </div>
+      `;
+
       li.innerHTML = title + snippet;
       ul.appendChild(li);
     });
+
     results.appendChild(ul);
   }
 
   if (input) {
     input.addEventListener('input', function (e) {
-      const q = normalize(e.target.value);
-      const tokens = q.split(/\s+/).filter(Boolean);
-      const matched = tokens.length ? recipes.filter(r => matches(r, tokens)) : [];
-      render(matched, tokens);
+      const query = normalize(e.target.value).trim();
+      const matched = query
+        ? recipes.filter(r => matches(r, query))
+        : [];
+
+      render(matched, query);
     });
   }
 });
