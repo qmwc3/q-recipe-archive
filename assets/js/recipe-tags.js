@@ -30,8 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     [...tagSet].sort().forEach(tag => {
       const btn = document.createElement('button');
-      btn.className = 'tag-button';
+      btn.className = 'tag';
       btn.textContent = tag;
+      btn.type = 'button';
       btn.onclick = () => filterByTag(tag);
       tagButtons.appendChild(btn);
     });
