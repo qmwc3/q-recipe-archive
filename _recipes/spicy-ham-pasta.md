@@ -1,8 +1,8 @@
 ---
 layout: recipe
 title: "Spicy Ham Pasta"
-date: 2026-01-15
-description: ""
+description: "A quick and savory pasta dish of linguine tossed with fragrant garlic, red pepper flakes, walnuts, and browned ham."
+notes: ""
 prep_time: "10 minutes"
 cook_time: "15 minutes"
 rest_time: ""
@@ -23,6 +23,9 @@ ingredients:
   - "2 pounds ham"
   - "½ cup parmesan"
   - "¼ cup parsley"
+ingredients_subhead: ""
+ingredients_2:
+  - ""
 preparations:
   - "Mince the shallots."
   - "Cut the ham into matchsticks."
