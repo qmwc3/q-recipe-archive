@@ -32,17 +32,16 @@ preparations:
   - "Slice the sausages into bite-sized rounds."
 directions:
   directions:
-  - step: "In a dutch oven, cook the sausage, onion, and garlic over medium heat until the sausage is no longer pink."
-  - step: "Drain excess liquid."
-  - step: "Add the broth and bring to a boil."
-    substeps:
+  - "In a dutch oven, cook the sausage, onion, and garlic over medium heat until the sausage is no longer pink."
+  - "Drain excess liquid."
+  - "Add the broth and bring to a boil."
       - "If using a dehydrated broth: add the water to the pot, wait to boil, and then add the dehydrated broth."
-  - step: "Add the pasta and cook for 3 minutes, stirring frequently."
-  - step: "Gradually add the spinach."
-  - step: "Cook and stir until the pasta is tender and the spinach is wilted (2 minutes)."
-  - step: "In a small bowl, combine the flour, pepper, and milk until smooth."
-  - step: "Gradually stir the mixture into the pasta."
-  - step: "Bring to a boil and stir until thickened (1 minute)."
+  - "Add the pasta and cook for 3 minutes, stirring frequently."
+  - "Gradually add the spinach."
+  - "Cook and stir until the pasta is tender and the spinach is wilted (2 minutes)."
+  - "In a small bowl, combine the flour, pepper, and milk until smooth."
+  - "Gradually stir the mixture into the pasta."
+  - "Bring to a boil and stir until thickened (1 minute)."
 pairing: ""
 photos: []
 ---
