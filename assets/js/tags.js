@@ -1,33 +1,38 @@
+---
+# Processed by Jekyll
+---
 document.addEventListener('DOMContentLoaded', function () {
   const tagButtons = document.getElementById('tag-buttons');
   const results = document.getElementById('tag-results');
   let recipes = [];
 
-  const indexUrl = '/recipes.json';
+  const indexUrl = '{{ "/recipes.json" | relative_url }}';
 
   fetch(indexUrl)
-    .then(r => r.json())
+    .then(r => {
+      if (!r.ok) throw new Error('Fetch failed');
+      return r.json();
+    })
     .then(data => {
       recipes = data;
       renderTags();
+    })
+    .catch(err => {
+      console.error('Failed to load recipes.json', err);
     });
-
-  function normalize(s) {
-    return (s || '').toLowerCase();
-  }
 
   function renderTags() {
     const tagSet = new Set();
 
     recipes.forEach(r => {
-      (r.tags || []).forEach(t => tagSet.add(t));
+      (r.tags || []).forEach(tag => tagSet.add(tag));
     });
 
     [...tagSet].sort().forEach(tag => {
       const btn = document.createElement('button');
       btn.className = 'tag-button';
       btn.textContent = tag;
-      btn.addEventListener('click', () => filterByTag(tag));
+      btn.onclick = () => filterByTag(tag);
       tagButtons.appendChild(btn);
     });
   }
@@ -35,19 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
   function filterByTag(tag) {
     results.innerHTML = '';
 
-    const matched = recipes.filter(r =>
-      (r.tags || []).map(normalize).includes(normalize(tag))
-    );
-
-    if (!matched.length) {
-      results.innerHTML = '<li>No recipes found.</li>';
-      return;
-    }
-
-    matched.forEach(r => {
-      const li = document.createElement('li');
-      li.innerHTML = `<a href="${r.url}">${r.title}</a>`;
-      results.appendChild(li);
-    });
+    recipes
+      .filter(r => (r.tags || []).includes(tag))
+      .forEach(r => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="${r.url}">${r.title}</a>`;
+        results.appendChild(li);
+      });
   }
 });
