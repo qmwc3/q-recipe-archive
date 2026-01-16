@@ -83,7 +83,6 @@
 
       {% if page.tags and page.tags != "" %}
       <section class="tags">
-        <h4>Tags</h4>
         <p>
           {% for tag in page.tags %}
             <a class="tag" href="{{ '/recipe-tags/' | append: tag | relative_url }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
