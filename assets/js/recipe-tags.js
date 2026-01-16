@@ -6,10 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const indexUrl = '{{ "/recipes.json" | relative_url }}';
   const baseUrl = '{{ "/recipe-tags/" | relative_url }}';
 
-  // If URL ends with a tag, get it (e.g., /recipe-tags/dishes/)
-  let urlParts = window.location.pathname.split('/').filter(Boolean);
-  let tagFromUrl = urlParts[urlParts.length - 1] === "recipe-tags" ? "" : urlParts[urlParts.length - 1];
-
   fetch(indexUrl)
     .then(r => {
       if (!r.ok) throw new Error('Fetch failed');
@@ -19,10 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
       recipes = data;
       renderTags();
 
+      // Read tag from query string: /recipe-tags/?tag=dishes
       const params = new URLSearchParams(window.location.search);
-      const tagFromUrl = params.get('tag'); // "dishes" if URL is /recipe-tags/?tag=dishes
+      const tagFromUrl = params.get('tag');
       if(tagFromUrl) filterByTag(tagFromUrl);
-
+    })
     .catch(err => {
       console.error('Failed to load recipes.json', err);
     });
@@ -40,10 +37,10 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.textContent = tag;
       btn.type = 'button';
       btn.onclick = () => {
-        // Update browser URL without reload
-        history.pushState({}, '', baseUrl + tag.toLowerCase().replace(/ /g, '-') + '/');
+        // Update query string in URL without reload
+        const newUrl = baseUrl + '?tag=' + encodeURIComponent(tag);
+        history.pushState({}, '', newUrl);
         filterByTag(tag);
-        highlightActiveTag(tag);
       };
       tagButtons.appendChild(btn);
     });
@@ -66,11 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function highlightActiveTag(activeTag) {
     const buttons = tagButtons.querySelectorAll('.tag');
     buttons.forEach(btn => {
-      if (btn.textContent === activeTag) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
+      btn.classList.toggle('active', btn.textContent === activeTag);
     });
   }
 });
