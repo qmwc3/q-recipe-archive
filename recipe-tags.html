@@ -8,6 +8,7 @@ permalink: /recipe-tags
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{{ page.title }} - {{ site.title }}</title>
+  <script src="{{ '/assets/js/recipe-tags.js' | relative_url }}"></script>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
 <body>
@@ -19,18 +20,11 @@ permalink: /recipe-tags
     <section class="recipe-tags">
       <h2>Filter by Tag</h2>
     
-      <div id="tag-buttons" class="tag-buttons"></div>
+      <div class="tag"></div>
     
-      <ul id="tag-results" class="recipe-list"></ul>
-
-      <p>
-        {% for tag in page.tags %}
-          <a class="tag" href="{{ '/tags/' | append: tag | relative_url }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-        {% endfor %}
-      </p>
+      <ul class="recipe-list"></ul>
+      
     </section>
-  
-    <script src="{{ '/assets/js/recipe-tags.js' | relative_url }}"></script>
 
   </main>
 
