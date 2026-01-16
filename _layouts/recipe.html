@@ -38,7 +38,7 @@
       {% endif %}
       
       {% if page.notes != "" %}
-      <p class="description">{{ page.notes }}</p>
+      <p class="description">Note: {{ page.notes }}</p>
       {% endif %}
 
       <section class="ingredients">
@@ -48,8 +48,8 @@
             <li>{{ item }}</li>
           {% endfor %}
         </ul>
-        {% if page.ingredients_2 != "" %}
-        <h3>{{ page.ingredients_2 }}</h3>
+        {% if page.ingredients_subhead != "" %}
+        <h3>{{ page.ingredients_subhead }}</h3>
         <ul>
           {% for item in page.ingredients_2 %}
             <li>{{ item }}</li>
