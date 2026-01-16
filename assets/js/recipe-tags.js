@@ -19,9 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
       recipes = data;
       renderTags();
 
-      // If a tag is in the URL, filter automatically
-      if (tagFromUrl) filterByTag(tagFromUrl);
-    })
+      const params = new URLSearchParams(window.location.search);
+      const tagFromUrl = params.get('tag'); // "dishes" if URL is /recipe-tags/?tag=dishes
+      if(tagFromUrl) filterByTag(tagFromUrl);
+
     .catch(err => {
       console.error('Failed to load recipes.json', err);
     });
