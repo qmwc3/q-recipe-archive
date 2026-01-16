@@ -38,40 +38,40 @@
       {% endif %}
       
       {% if page.notes and page.notes != "" %}
-      <p class="description">Note: {{ page.notes }}</p>
+      <p class="description"><span style="font-weight:600;">Note:</span> {{ page.notes }}</p>
       {% endif %}
 
-      <section class="ingredients">
-		<h3>Ingredients</h3>
-		<ul class="ingredients-list">
-			{% assign optional = nil %}
-			{% for ingredient in page.ingredients %}
-				{% if ingredient.label %}
-					{% assign optional = ingredient %}
-				{% else %}
-					<li>{{ ingredient }}</li>
+      <section class="ingredients">      
+			<h3>Ingredients</h3>
+				<ul class="ingredients-list">
+					{% assign optional = nil %}
+					{% for ingredient in page.ingredients %}
+						{% if ingredient.label %}
+							{% assign optional = ingredient %}
+						{% else %}
+							<li>{{ ingredient }}</li>
+						{% endif %}
+					{% endfor %}
+					{% if optional %}
+						<li class="ingredient-header">{{ optional.label }}</li>
+						<li class="ingredient-nested">
+							<ul>
+								{% for item in optional.items %}
+									<li>{{ item }}</li>
+								{% endfor %}
+							</ul>
+						</li>
+					{% endif %}
+				</ul>
+				{% if page.ingredients_subhead and page.ingredients_subhead != "" %}
+				<h3>{{ page.ingredients_subhead }}</h3>
+				<ul>
+					{% for item in page.ingredients_2 %}
+						<li>{{ item }}</li>
+					{% endfor %}
+				</ul>
 				{% endif %}
-			{% endfor %}
-			{% if optional %}
-				<li class="ingredient-header">{{ optional.label }}</li>
-				<li class="ingredient-nested">
-					<ul>
-						{% for item in optional.items %}
-							<li>{{ item }}</li>
-						{% endfor %}
-					</ul>
-				</li>
-			{% endif %}
-		</ul>
-		{% if page.ingredients_subhead and page.ingredients_subhead != "" %}
-		<h3>{{ page.ingredients_subhead }}</h3>
-		<ul>
-			{% for item in page.ingredients_2 %}
-				<li>{{ item }}</li>
-			{% endfor %}
-		</ul>
-		{% endif %}
-	</section>
+			</section>
             
       <section class="preparations">
         <h3>Preparations</h3>
@@ -83,13 +83,13 @@
       </section>
 
       <section class="directions">
-		<h3>Directions</h3>
+				<h3>Directions</h3>
         <ol>
           {% for step in page.directions %}
             <li>{{ step }}</li>
           {% endfor %}
         </ol>
-	  </section>
+			</section>
       
       {% if page.pairing and page.pairing != "" %}
       <p class="description">{{ page.pairing }}</p>
