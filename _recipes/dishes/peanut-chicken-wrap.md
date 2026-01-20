@@ -3,10 +3,10 @@ layout: recipe
 title: "Peanut Chicken Wrap"
 description: "A refreshing and crunchy chicken salad with cabbage, shredded carrots, peanuts, and cilantro, tossed in a peanut&nbsp;dressing."
 notes: ""
-prep_time: "30 minutes"
-cook_time: "15 minutes"
+prep_time: "30m"
+cook_time: "15m"
 rest_time: ""
-total_time: "45 minutes"
+total_time: "45m"
 servings: "4"
 tags: 
   - "dishes"
