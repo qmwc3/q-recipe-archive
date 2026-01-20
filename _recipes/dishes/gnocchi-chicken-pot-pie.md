@@ -1,6 +1,6 @@
 ---
 layout: recipe
-title: "Gnocchi Chicken Pot&nbsp;Pie"
+title: "Gnocchi Chicken Pot Pie"
 description: "A creamy one‑pot gnocchi and chicken dish with&nbsp;vegetables."
 notes: ""
 prep_time: "10m"
