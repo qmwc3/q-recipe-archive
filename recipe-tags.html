@@ -99,10 +99,11 @@ permalink: /recipe-tags/
   function highlightActiveTags() {
     const buttons = tagButtons.querySelectorAll('.tag');
     buttons.forEach(btn => {
-      if(activeTags.has(btn.textContent)) {
-        btn.classList.add('active');   // selected → add active
+      const tagText = btn.textContent.trim(); // normalize spaces
+      if(activeTags.has(tagText)) {
+        btn.classList.add('active'); // bold selected tags
       } else {
-        btn.classList.remove('active'); // not selected → remove active
+        btn.classList.remove('active'); // unbold unselected tags
       }
     });
   }
