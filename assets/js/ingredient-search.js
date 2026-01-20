@@ -1,56 +1,42 @@
----
-# This file is processed by Jekyll so it can use Liquid for correct paths
----
 document.addEventListener('DOMContentLoaded', function () {
   const input = document.getElementById('ingredient-search-input');
   const results = document.getElementById('ingredient-search-results');
   let recipes = [];
 
-  // Jekyll will render the correct path including baseurl
   const indexUrl = '{{ "/recipes.json" | relative_url }}';
 
   fetch(indexUrl)
-    .then(r => {
-      if (!r.ok) throw new Error('Network response was not ok');
-      return r.json();
-    })
-    .then(data => { 
-      // Store recipes as-is; we'll decode &nbsp; when rendering
-      recipes = data;
-    })
-    .catch((err) => {
+    .then(r => r.ok ? r.json() : Promise.reject('Network error'))
+    .then(data => { recipes = data; })
+    .catch(err => {
       console.error('Failed to load recipes.json:', err);
       if (results) results.innerHTML = '<p class="muted">Could not load recipe index.</p>';
     });
 
+  // Normalize a string for search: lowercase + replace &nbsp;
   function normalize(s) {
-    return (s || '').toLowerCase();
+    return (s || '').toLowerCase().replace(/&nbsp;/g, ' ');
   }
 
-  // Match ONLY consecutive words (phrase match)
+  // Search matching
   function matches(recipe, query) {
     if (!recipe.ingredients) return false;
-    // Decode &nbsp; for accurate search
-    const ingText = (recipe.ingredients || [])
-      .map(i => i.replace(/&nbsp;/g, ' '))
-      .join(' ')
-      .toLowerCase();
+    const ingText = (recipe.ingredients || []).map(normalize).join(' ');
     return ingText.includes(query);
   }
 
+  // Escape HTML for safe display
   function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, function (m) {
-      return {
-        '&':'&amp;',
-        '<':'&lt;',
-        '>':'&gt;',
-        '"':'&quot;',
-        "'":'&#39;'
-      }[m];
-    });
+    return String(str).replace(/[&<>"']/g, m => ({
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '"':'&quot;',
+      "'":'&#39;'
+    }[m]));
   }
 
-  // Decode HTML entities like &nbsp; before highlighting
+  // Decode &nbsp; for display only
   function decodeHtmlEntities(str) {
     return str.replace(/&nbsp;/g, ' ')
               .replace(/&amp;/g, '&')
@@ -60,16 +46,13 @@ document.addEventListener('DOMContentLoaded', function () {
               .replace(/&#39;/g, "'");
   }
 
-  // Highlight ONLY the full phrase
   function highlight(text, query) {
     const decoded = decodeHtmlEntities(text);
     const escaped = escapeHtml(decoded);
-
     if (!query) return escaped;
 
     const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const phraseRegex = new RegExp(`(${safeQuery})`, 'gi');
-
     return escaped.replace(phraseRegex, '<mark>$1</mark>');
   }
 
@@ -95,11 +78,9 @@ document.addEventListener('DOMContentLoaded', function () {
       li.className = 'ingredient-search-item';
 
       const title = `<a href="${r.url}">${escapeHtml(r.title)}</a>`;
-      const snippet = `
-        <div class="ingredients-snippet">
-          ${highlight((r.ingredients || []).join(', '), query)}
-        </div>
-      `;
+      const snippet = `<div class="ingredients-snippet">
+        ${highlight((r.ingredients || []).join(', '), query)}
+      </div>`;
 
       li.innerHTML = title + snippet;
       ul.appendChild(li);
@@ -114,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function () {
       const matched = query
         ? recipes.filter(r => matches(r, query))
         : [];
-
       render(matched, query);
     });
   }
