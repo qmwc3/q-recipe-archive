@@ -26,10 +26,11 @@ permalink: /recipe-tags/
   {% include footer %}
 
   <script>
-document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function () {
   const tagButtons = document.getElementById('tag-buttons');
   const results = document.getElementById('tag-results');
   let recipes = [];
+  let activeTags = new Set(); // store all currently selected tags
 
   const indexUrl = '{{ "/recipes.json" | relative_url }}';
   const baseUrl = '{{ "/recipe-tags/" | relative_url }}';
@@ -40,9 +41,13 @@ document.addEventListener('DOMContentLoaded', function () {
       recipes = data;
       renderTags();
 
+      // Check URL params on load
       const params = new URLSearchParams(window.location.search);
-      const tag = params.get('tag');
-      if(tag) filterByTag(tag);
+      const tagsParam = params.get('tags'); // comma-separated tags
+      if(tagsParam) {
+        tagsParam.split(',').forEach(tag => activeTags.add(decodeURIComponent(tag)));
+        filterByTags();
+      }
     })
     .catch(err => console.error('Failed to load recipes.json', err));
 
@@ -56,51 +61,61 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.type = 'button';
 
       btn.onclick = () => {
-        const params = new URLSearchParams(window.location.search);
-        const currentTag = params.get('tag');
+        if(activeTags.has(tag)) activeTags.delete(tag); // toggle off
+        else activeTags.add(tag); // toggle on
 
-        if (currentTag === tag) {
-          // Tag is already active → unselect it
-          params.delete('tag');
-          history.pushState({}, '', baseUrl);
-          results.innerHTML = ''; // clear results
-          highlightActiveTag(null);
-        } else {
-          // Tag is not active → select it
-          params.set('tag', tag);
-          history.pushState({}, '', baseUrl + '?tag=' + encodeURIComponent(tag));
-          filterByTag(tag);
-        }
+        updateURL();
+        filterByTags();
       };
 
       tagButtons.appendChild(btn);
     });
   }
 
-  function filterByTag(tag) {
+  function filterByTags() {
     results.innerHTML = '';
-    recipes.filter(r => (r.tags || []).includes(tag))
-           .forEach(r => {
-             const li = document.createElement('li');
-             li.innerHTML = `<a href="${r.url}">${r.title}</a>`;
-             results.appendChild(li);
-           });
-    highlightActiveTag(tag);
+
+    if(activeTags.size === 0) return;
+
+    const filtered = recipes.filter(r => {
+      const rTags = r.tags || [];
+      // AND logic: recipe must have all activeTags
+      return [...activeTags].every(t => rTags.includes(t));
+    });
+
+    if(filtered.length === 0) {
+      results.innerHTML = '<p>No recipes found matching selected tags.</p>';
+    } else {
+      filtered.forEach(r => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="${r.url}">${r.title}</a>`;
+        results.appendChild(li);
+      });
+    }
+
+    highlightActiveTags();
   }
 
-  function highlightActiveTag(activeTag) {
+  function highlightActiveTags() {
     const buttons = tagButtons.querySelectorAll('.tag');
-    buttons.forEach(btn => btn.classList.toggle('active', btn.textContent === activeTag));
+    buttons.forEach(btn => btn.classList.toggle('active', activeTags.has(btn.textContent)));
+  }
+
+  function updateURL() {
+    const params = new URLSearchParams();
+    if(activeTags.size > 0) {
+      params.set('tags', [...activeTags].map(encodeURIComponent).join(','));
+    }
+    const newUrl = baseUrl + (params.toString() ? '?' + params.toString() : '');
+    history.pushState({}, '', newUrl);
   }
 
   window.addEventListener('popstate', () => {
     const params = new URLSearchParams(window.location.search);
-    const tag = params.get('tag');
-    if(tag) filterByTag(tag);
-    else {
-      results.innerHTML = '';
-      highlightActiveTag(null);
-    }
+    activeTags = new Set();
+    const tagsParam = params.get('tags');
+    if(tagsParam) tagsParam.split(',').forEach(tag => activeTags.add(decodeURIComponent(tag)));
+    filterByTags();
   });
 });
 </script>
