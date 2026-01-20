@@ -1,12 +1,12 @@
 ---
 layout: recipe
-title: "Egg Roll in a Bowl"
+title: "Egg Roll in a&nbsp;Bowl"
 description: "A quick one-skillet meal with ground beef, cabbage, and classic egg roll&nbsp;flavors."
 notes: ""
-prep_time: "10 minutes"
-cook_time: "20 minutes"
+prep_time: "10m"
+cook_time: "20m"
 rest_time: ""
-total_time: "30 minutes"
+total_time: "30m"
 servings: "4"
 tags:
   - dishes
