@@ -51,5 +51,8 @@ ul, ol { margin:0; padding-left:1.25rem }
 .ingredients-snippet mark { background:var(--accent-color-3); color:var(--bg); padding:.15rem; border-radius:2px } 
 
 @media (max-width:640px) { 
+	h1 { font-size:1.25em; }
+	h2 { font-size:1.15em; }
+	h3 { font-size:1em; }
  .photo { flex-basis:100% } 
  } 
