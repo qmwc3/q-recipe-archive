@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function escapeHtml(str) {
     return String(str).replace(/[&<>"']/g, function (m) {
       return {
+        ' ':'&nbsp;',
         '&':'&amp;',
         '<':'&lt;',
         '>':'&gt;',
