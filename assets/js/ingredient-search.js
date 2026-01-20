@@ -15,11 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
       return r.json();
     })
     .then(data => { 
-      // Normalize &nbsp; in ingredients immediately
-      recipes = data.map(r => ({
-        ...r,
-        ingredients: (r.ingredients || []).map(i => i.replace(/&nbsp;/g, ' '))
-      }));
+      // Store recipes as-is; we'll decode &nbsp; when rendering
+      recipes = data;
     })
     .catch((err) => {
       console.error('Failed to load recipes.json:', err);
@@ -33,7 +30,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // Match ONLY consecutive words (phrase match)
   function matches(recipe, query) {
     if (!recipe.ingredients) return false;
-    const ingText = recipe.ingredients.join(' ').toLowerCase();
+    // Decode &nbsp; for accurate search
+    const ingText = (recipe.ingredients || [])
+      .map(i => i.replace(/&nbsp;/g, ' '))
+      .join(' ')
+      .toLowerCase();
     return ingText.includes(query);
   }
 
@@ -49,9 +50,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Decode HTML entities like &nbsp; before highlighting
+  function decodeHtmlEntities(str) {
+    return str.replace(/&nbsp;/g, ' ')
+              .replace(/&amp;/g, '&')
+              .replace(/&lt;/g, '<')
+              .replace(/&gt;/g, '>')
+              .replace(/&quot;/g, '"')
+              .replace(/&#39;/g, "'");
+  }
+
   // Highlight ONLY the full phrase
   function highlight(text, query) {
-    let escaped = escapeHtml(text);
+    const decoded = decodeHtmlEntities(text);
+    const escaped = escapeHtml(decoded);
+
     if (!query) return escaped;
 
     const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -84,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const title = `<a href="${r.url}">${escapeHtml(r.title)}</a>`;
       const snippet = `
         <div class="ingredients-snippet">
-          ${highlight((r.ingredients || []).map(i => i.replace(/&nbsp;/g, ' ')).join(', '), query)}
+          ${highlight((r.ingredients || []).join(', '), query)}
         </div>
       `;
 
