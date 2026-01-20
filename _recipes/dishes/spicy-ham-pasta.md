@@ -3,10 +3,10 @@ layout: recipe
 title: "Spicy Ham Pasta"
 description: "A quick and savory pasta dish of linguine tossed with fragrant garlic, red pepper flakes, walnuts, and browned&nbsp;ham."
 notes: ""
-prep_time: "10 minutes"
-cook_time: "15 minutes"
+prep_time: "10m"
+cook_time: "15m"
 rest_time: ""
-total_time: "35 minutes"
+total_time: "35m"
 servings: "3"
 tags: 
   - "dishes"
