@@ -1,6 +1,6 @@
 ---
 layout: recipe
-title: "Chicken Poppyseed Pasta&nbsp;Salad"
+title: "Chicken Poppyseed Pasta Salad"
 description: "A refreshing pasta salad with chicken, celery, craisins, and almonds all tossed in a creamy poppyseed dressing and chilled for serve‑ahead&nbsp;flavor."
 notes: "If using more pasta and/or chicken than called for, double the&nbsp;dressing."
 prep_time: "30m"
