@@ -1,6 +1,6 @@
 ---
 layout: recipe
-title: "Crunchy Chicken&nbsp;Salad"
+title: "Crunchy Chicken Salad"
 description: "A flavorful, textural chicken salad with crunchy toasted ramen and sesame seeds tossed with fresh veggies and a tangy&nbsp;dressing."
 notes: ""
 prep_time: "25m"
