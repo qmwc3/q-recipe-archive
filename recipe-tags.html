@@ -98,8 +98,15 @@ permalink: /recipe-tags/
 
   function highlightActiveTags() {
     const buttons = tagButtons.querySelectorAll('.tag');
-    buttons.forEach(btn => btn.classList.toggle('active', activeTags.has(btn.textContent)));
+    buttons.forEach(btn => {
+      if(activeTags.has(btn.textContent)) {
+        btn.classList.add('active');   // selected → add active
+      } else {
+        btn.classList.remove('active'); // not selected → remove active
+      }
+    });
   }
+
 
   function updateURL() {
     const params = new URLSearchParams();
