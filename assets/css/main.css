@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6, p, li, figcaption, blockquote { text-wrap: pretty; }
 
 /* header */
 .header-row { display:flex; align-items:center; justify-content:space-between; flex-wrap:nowrap; gap:1rem; }
-.header-row-right { flex-shrink:1; white-space:nowrap; text-align:right; }
+.header-row-right { display:flex; flex-shrink:1; white-space:nowrap; text-align:right; gap:0.5rem; }
 .header-row-left { flex-shrink:0; white-space:nowrap; }
 .site-header { background:var(--accent-color-2); border-bottom:4px solid var(--accent-color-1) }
 
