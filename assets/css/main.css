@@ -40,7 +40,7 @@ h1, h2, h3, h4, h5, h6, p, li, figcaption, blockquote { text-wrap: pretty; }
 .ingredient-nested { list-style:none; padding-left:0; }
 .meta div { margin-top: 0.5rem; }
 .meta span { margin-right:1.5rem; color:var(--accent-color-3); font-size:.95rem; }
-.recipe-title { margin-top:0; }
+.recipe-title { margin:0 0 1rem; }
 
 /* ingredients search */
 .ingredient-search { margin: 0 0 1rem 0; }
