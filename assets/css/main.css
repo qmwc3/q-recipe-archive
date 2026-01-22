@@ -61,4 +61,7 @@ h1, h2, h3, h4, h5, h6, p, li, figcaption, blockquote { text-wrap: pretty; }
 	h2 { font-size:1.15em; }
 	h3 { font-size:1em; }
  	.photo { flex-basis:100% }
+
+	/* header */
+	.header-row { flex-direction:column; }
  } 
