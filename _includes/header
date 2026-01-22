@@ -1,10 +1,13 @@
 <header class="site-header">
   <div class="wrap header-row">
-    <h1>
-      <a href="{{ '/' | relative_url }}" style="color:var(--text-color-1); text-decoration:none;">
-        {{ site.title | default: "My Cookbook" }}
-      </a>
-    </h1>
+    
+    <div class="header-row-left">
+      <h1>
+        <a href="{{ '/' | relative_url }}" style="color:var(--text-color-1); text-decoration:none;">
+          {{ site.title | default: "My Cookbook" }}
+        </a>
+      </h1>
+    </div>
 
     <div class="header-row-right">
       <h2>
@@ -13,5 +16,6 @@
         </a>
       </h2>
     </div>
+    
   </div>
 </header>
