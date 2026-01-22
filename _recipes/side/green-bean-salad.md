@@ -9,7 +9,7 @@ rest_time: "3h"
 total_time: "3h 20m"
 servings: ""
 tags:
-  - sides
+  - side
 source_name: ""
 source_url: ""
 ingredients:
