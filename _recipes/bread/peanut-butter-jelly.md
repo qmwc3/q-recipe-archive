@@ -9,9 +9,9 @@ rest_time: ""
 total_time: "1h 20m"
 servings: "1 loaf"
 tags: 
-  - breads
+  - bread
   - breakfast
-  - snacks
+  - snack
 source_name: ""
 source_url: ""
 ingredients:
