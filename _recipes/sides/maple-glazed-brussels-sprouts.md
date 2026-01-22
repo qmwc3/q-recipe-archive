@@ -10,6 +10,7 @@ total_time: "20m"
 servings: "3"
 tags: 
   - sides
+  - 1-pot
 source_name: ""
 source_url: ""
 ingredients:
