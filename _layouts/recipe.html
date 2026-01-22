@@ -73,16 +73,16 @@
 				{% endif %}
 			</section>
       
-      {% if page.preparations and page.preparations != "" %}
-      <section class="preparations">
-        <h3>Preparations</h3>
-        <ul>
-          {% for step in page.preparations %}
-            <li>{{ step }}</li>
-          {% endfor %}
-        </ul>
-      </section>
-      {% endif %}
+      {% if page.preparations and page.preparations.size > 0 %}
+			<section class="preparations">
+			  <h3>Preparations</h3>
+			  <ul>
+			    {% for step in page.preparations %}
+			      <li>{{ step }}</li>
+			    {% endfor %}
+			  </ul>
+			</section>
+			{% endif %}
 
       <section class="directions">
 				<h3>Directions</h3>
