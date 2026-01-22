@@ -26,6 +26,28 @@ permalink: /recipe-tags/
   {% include footer %}
 
   <script>
+  // Global mapping of tag URL-safe name to display text
+  const TAG_DISPLAY = {
+    "1-pot": "1-Pot",
+    "bread": "Bread",
+    "breads": "Bread",
+    "breakfast": "Breakfast",
+    "dishes": "Dishes",
+    "dip": "Sauce/Dip",
+    "dips": "Sauce/Dip",
+    "sauce": "Sauce/Dip",
+    "sauces": "Sauce/Dip",
+    "sauces-dips": "Sauce/Dip",
+    "dessert": "Dessert",
+    "desserts": "Dessert",
+    "side": "Side",
+    "sides": "Side",
+    "snack": "Snack",
+    "snacks": "Snack",
+    "soup": "Soup",
+    "soups": "Soup",
+  };
+  
   document.addEventListener('DOMContentLoaded', function () {
   const tagButtons = document.getElementById('tag-buttons');
   const results = document.getElementById('tag-results');
@@ -51,23 +73,26 @@ permalink: /recipe-tags/
     })
     .catch(err => console.error('Failed to load recipes.json', err));
 
-  function renderTags() {
+    function renderTags() {
     const tagSet = new Set();
     recipes.forEach(r => (r.tags || []).forEach(tag => tagSet.add(tag)));
-    [...tagSet].sort().forEach(tag => {
+  
+    [...tagSet].sort().forEach(name => {
+      const display = TAG_DISPLAY[name] || name; // fallback to name
       const btn = document.createElement('button');
       btn.className = 'tag';
-      btn.textContent = tag;
       btn.type = 'button';
-
+      btn.dataset.tag = name;
+      btn.textContent = display;
+  
       btn.onclick = () => {
-        if(activeTags.has(tag)) activeTags.delete(tag); // toggle off
-        else activeTags.add(tag); // toggle on
-
+        if(activeTags.has(name)) activeTags.delete(name);
+        else activeTags.add(name);
+  
         updateURL();
         filterByTags();
       };
-
+  
       tagButtons.appendChild(btn);
     });
   }
