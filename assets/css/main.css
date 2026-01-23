@@ -38,6 +38,7 @@ h1, h2, h3, h4, h5, h6, p, li, figcaption, blockquote { text-wrap:pretty; }
 
 /* recipe page */
 .ingredients, .preparations, .directions { background:#var(--bg); padding:0.5rem; border-radius:8px; }
+.ingredients-list { font-weight:300; }
 .ingredient-header { list-style:none; font-weight:600; }
 .ingredient-nested { list-style:none; padding-left:0; }
 .meta { font-weight:500; margin:0 0 1rem; }
