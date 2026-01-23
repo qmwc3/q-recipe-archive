@@ -1,7 +1,7 @@
 ---
 layout: recipe
 title: "Broccoli Salad"
-description: ""
+description: "A crunchy, creamy broccoli salad loaded with nuts, cheese, raisins, and a sweet-tangy dressing."
 notes: ""
 prep_time: "5 minutes"
 cook_time: "15 minutes"
